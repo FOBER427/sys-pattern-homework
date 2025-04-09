@@ -36,7 +36,7 @@ build:
     - apt-get install -y build-essential
   script:
     - echo "Building the project..."
-    - # Здесь можно добавить команды для сборки вашего проекта, например, make, npm install и т.д.
+    - # Здесь можно добавить команды для сборки проекта, например, make, npm install и т.д.
 
 # Этап тестирования
 test:
@@ -47,7 +47,7 @@ test:
     - apt-get install -y build-essential
   script:
     - echo "Running tests..."
-    - # Добавьте команды для запуска тестов, например, python3 -m unittest или npm test.
+    - # Команды для запуска тестов, например, python3 -m unittest или npm test.
 
 # Этап деплоя (можно настроить, если хотите деплоить)
 deploy:
@@ -55,7 +55,7 @@ deploy:
   image: ubuntu:latest
   script:
     - echo "Deploying the project..."
-    - # Здесь можно добавить команды для деплоя вашего проекта на сервер или в облако.
+    - # Команды для деплоя вашего проекта на сервер или в облако.
   only:
     - main
 
