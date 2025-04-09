@@ -1,3 +1,5 @@
+# GitLab CI/CD pipeline configuration file
+
 stages:
   - build
   - test
@@ -6,26 +8,31 @@ stages:
 # Этап сборки
 build:
   stage: build
+  image: ubuntu:latest
+  before_script:
+    - apt-get update -y
+    - apt-get install -y build-essential
   script:
     - echo "Building the project..."
-    # Здесь могут быть команды для установки зависимостей, например:
-    # - pip install -r requirements.txt
+    - # Здесь можно добавить команды для сборки вашего проекта, например, make, npm install и т.д.
 
 # Этап тестирования
 test:
   stage: test
+  image: ubuntu:latest
+  before_script:
+    - apt-get update -y
+    - apt-get install -y build-essential
   script:
     - echo "Running tests..."
-    # Замените на ваш тестовый фреймворк, например для Python:
-    - pytest
-    # или для других языков/технологий.
+    - # Добавьте команды для запуска тестов, например, python3 -m unittest или npm test.
 
-# Этап деплоя
+# Этап деплоя (можно настроить, если хотите деплоить)
 deploy:
   stage: deploy
+  image: ubuntu:latest
   script:
     - echo "Deploying the project..."
-    # Здесь ваш скрипт для деплоя, например:
-    # - ./deploy.sh
+    - # Здесь можно добавить команды для деплоя вашего проекта на сервер или в облако.
   only:
     - main

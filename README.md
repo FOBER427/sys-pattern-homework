@@ -18,7 +18,46 @@
    - **test**: запуск тестов.
    - **deploy**: деплой проекта.
    
-Файл `.gitlab-ci.yml` добавлен в проект и запушен на GitHub.
+код `.gitlab-ci.yml` добавлен в проект и запушен на GitHub.
+
+# GitLab CI/CD pipeline configuration file
+
+stages:
+  - build
+  - test
+  - deploy
+
+# Этап сборки
+build:
+  stage: build
+  image: ubuntu:latest
+  before_script:
+    - apt-get update -y
+    - apt-get install -y build-essential
+  script:
+    - echo "Building the project..."
+    - # Здесь можно добавить команды для сборки вашего проекта, например, make, npm install и т.д.
+
+# Этап тестирования
+test:
+  stage: test
+  image: ubuntu:latest
+  before_script:
+    - apt-get update -y
+    - apt-get install -y build-essential
+  script:
+    - echo "Running tests..."
+    - # Добавьте команды для запуска тестов, например, python3 -m unittest или npm test.
+
+# Этап деплоя (можно настроить, если хотите деплоить)
+deploy:
+  stage: deploy
+  image: ubuntu:latest
+  script:
+    - echo "Deploying the project..."
+    - # Здесь можно добавить команды для деплоя вашего проекта на сервер или в облако.
+  only:
+    - main
 
 ## Скриншоты
 
