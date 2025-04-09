@@ -1,0 +1,31 @@
+stages:
+  - build
+  - test
+  - deploy
+
+# Этап сборки
+build:
+  stage: build
+  script:
+    - echo "Building the project..."
+    # Здесь могут быть команды для установки зависимостей, например:
+    # - pip install -r requirements.txt
+
+# Этап тестирования
+test:
+  stage: test
+  script:
+    - echo "Running tests..."
+    # Замените на ваш тестовый фреймворк, например для Python:
+    - pytest
+    # или для других языков/технологий.
+
+# Этап деплоя
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying the project..."
+    # Здесь ваш скрипт для деплоя, например:
+    # - ./deploy.sh
+  only:
+    - main
