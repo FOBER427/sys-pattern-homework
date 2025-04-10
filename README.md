@@ -16,8 +16,8 @@
 ![Скриншот 1.1](img/Screenshot.ex1_1.png)
 
 Настройки раннера из файла config.toml:
-
-'''' 
+	
+	''' 
 concurrent = 1
 check_interval = 0
 shutdown_timeout = 0
@@ -33,13 +33,11 @@ shutdown_timeout = 0
   token_obtained_at = 2025-04-09T14:37:12Z
   token_expires_at = 0001-01-01T00:00:00Z
   executor = "docker"
-
   [runners.cache]
     MaxUploadedArchiveSize = 0
     [runners.cache.s3]
     [runners.cache.gcs]
     [runners.cache.azure]
-
   [runners.docker]
     tls_verify = false
     image = "ruby:2.7"
@@ -49,15 +47,17 @@ shutdown_timeout = 0
     disable_cache = false
     volumes = [
       "/cache",
-      "/var/run/docker.sock:/var/run/docker.sock"
-    ]
+      "/var/run/docker.sock:/var/run/docker.sock"]
     shm_size = 512m
     network_mtu = 1500
     extra_hosts = ["gitlab.local:10.0.2.15"]
-''''
+
+	'''
 
 
 ![Скриншот 2.1](img/Screenshot.ex2_1.png)
+
+---
 
 ## Задание 2
 
@@ -80,7 +80,7 @@ shutdown_timeout = 0
 
 код `.gitlab-ci.yml` добавлен в проект и запушен на GitHub:
 
-''''
+	'''
 stages:
   - test
   - build
@@ -96,7 +96,7 @@ build:
   image: docker:latest
   script:
     - docker build .
-''''
+	'''	
 
 ## Скриншоты
 - Скриншоты с успешно выполненными сборками на GitLab.
