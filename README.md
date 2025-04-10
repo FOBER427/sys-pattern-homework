@@ -16,8 +16,7 @@
 ![Скриншот 1.1](img/Screenshot.ex1_1.png)
 
 Настройки раннера из файла config.toml:
-	
-	''' 
+````
 concurrent = 1
 check_interval = 0
 shutdown_timeout = 0
@@ -51,8 +50,8 @@ shutdown_timeout = 0
     shm_size = 512m
     network_mtu = 1500
     extra_hosts = ["gitlab.local:10.0.2.15"]
+````
 
-	'''
 
 
 ![Скриншот 2.1](img/Screenshot.ex2_1.png)
@@ -79,8 +78,8 @@ shutdown_timeout = 0
 ![Скриншот 2.1](img/Screenshot.ex2_1.png)
 
 код `.gitlab-ci.yml` добавлен в проект и запушен на GitHub:
+````
 
-	'''
 stages:
   - test
   - build
@@ -96,7 +95,9 @@ build:
   image: docker:latest
   script:
     - docker build .
-	'''	
+
+````
+
 
 ## Скриншоты
 - Скриншоты с успешно выполненными сборками на GitLab.
