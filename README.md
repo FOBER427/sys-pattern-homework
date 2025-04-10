@@ -83,18 +83,41 @@ shutdown_timeout = 0
 stages:
   - test
   - build
+  - deploy
 
+# Этап тестирования
 test:
   stage: test
   image: golang:1.17
+  before_script:
+    - go mod tidy
   script:
-    - go test .
+    - go test ./...
+  artifacts:
+    paths:
+      - coverage/
 
+# Этап сборки Docker образа
 build:
   stage: build
   image: docker:latest
+  services:
+    - docker:dind  # Docker in Docker для сборки образов
   script:
-    - docker build .
+    - docker build -t my-app .
+    - docker tag my-app:latest my-docker-repo/my-app:latest
+  only:
+    - main  # Этот этап будет запускаться только для ветки main
+
+# Этап деплоя (например, деплой на сервер или в облако)
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying application..."
+    # Пример деплоя через SSH или в облако
+  only:
+    - main
+
 
 ````
 

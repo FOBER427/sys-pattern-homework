@@ -1,16 +1,40 @@
 # GitLab CI/CD pipeline configuration file
 
 stages:
-  - lint
   - test
+  - build
+  - deploy
 
-lint_job:
-  stage: lint
-  script:
-    - echo "Проверка README на наличие ссылок на изображения"
-    - grep -E "!\[.*\]\(img/.*\.png\)" README.md || echo "Изображения не найдены"
-
-test_job:
+# Этап тестирования
+test:
   stage: test
+  image: golang:1.17
+  before_script:
+    - go mod tidy
   script:
-    - echo "Тесты будут здесь"
+    - go test ./...
+  artifacts:
+    paths:
+      - coverage/
+
+# Этап сборки Docker образа
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind  # Docker in Docker для сборки образов
+  script:
+    - docker build -t my-app .
+    - docker tag my-app:latest my-docker-repo/my-app:latest
+  only:
+    - main  # Этот этап будет запускаться только для ветки main
+
+# Этап деплоя (например, деплой на сервер или в облако)
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying application..."
+    # Пример деплоя через SSH или в облако
+  only:
+    - main
+
